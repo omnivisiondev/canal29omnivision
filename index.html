@@ -1,14 +1,780 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=/grilla_canales/">
-    <title>Redireccionando a Omnivision</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canal 29 Omnivision - Televisión Local de Chalatenango</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Font Awesome para iconos de redes sociales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Inter (moderna y legible) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
-        window.location.href = '/grilla_canales/';
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e40af',
+                        accent: '#ea580c',
+                        light: '#f8fafc',
+                        dark: '#0f172a',
+                        gray: {
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Inter', 'sans-serif'],
+                    },
+                    spacing: {
+                        '128': '32rem',
+                        '144': '36rem',
+                    }
+                }
+            }
+        }
     </script>
+    <style>
+        .hero-pattern {
+            background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .program-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .program-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+
+        .floating-icon {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(to right, #ea580c, #1e40af);
+            border-radius: 2px;
+        }
+
+        .contact-gradient {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .contact-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+            border-radius: 16px;
+        }
+
+        .input-field {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+        }
+
+        .input-field:focus {
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.15);
+            border-color: #1e40af;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
+            transition: all 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(15, 23, 42, 0.5);
+        }
+
+        .contact-info-card {
+            background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+
+        .contact-icon {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+            margin: 1.5rem 0;
+        }
+
+        .program-highlight {
+            border-left: 4px solid #1e40af;
+            transition: all 0.3s ease;
+        }
+
+        .program-highlight:hover {
+            border-left-color: #ea580c;
+            transform: translateX(5px);
+        }
+
+        .ad-service-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .ad-service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-ticker {
+            background: linear-gradient(90deg, #1e40af 0%, #0f172a 100%);
+            color: white;
+            padding: 12px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .news-ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker 30s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .live-badge {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+            }
+        }
+    </style>
 </head>
-<body>
-    <p>Si no eres redirigido automáticamente, <a href="/grilla_canales/">haz clic aquí</a>.</p>
+
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- News Ticker -->
+    <div class="news-ticker">
+        <div class="news-ticker-content">
+            <span class="font-bold mr-4">📢 EN VIVO:</span> Telenoticias 29 Chalatenango - Sintoniza nuestro noticiero
+            local todos los días a las 6:00 PM
+            <span class="mx-8">•</span>
+            Omnivision Deportes: Cobertura especial del Torneo de Fútbol Local
+            <span class="mx-8">•</span>
+            Próximo evento: Transmisión en vivo de las Fiestas Patronales de Chalatenango
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <a href="#" class="flex items-center text-primary font-bold text-2xl">
+                    <img src="img/logo_canal_29_omnivision.webp" alt="Canal 29 Omnivision" class="h-10 mr-2">
+                    <span class="hidden md:block">Canal 29 Omnivision</span>
+                </a>
+
+                <div class="hidden md:flex space-x-6">
+                    <a href="#"
+                        class="text-gray-700 hover:text-primary font-medium transition-colors flex items-center">
+                        <span class="material-symbols-outlined mr-1 text-sm">home</span> Inicio
+                    </a>
+                    <a href="#programas"
+                        class="text-gray-700 hover:text-primary font-medium transition-colors flex items-center">
+                        <span class="material-symbols-outlined mr-1 text-sm">live_tv</span> Programas
+                    </a>
+                    <a href="#publicidad"
+                        class="text-gray-700 hover:text-primary font-medium transition-colors flex items-center">
+                        <span class="material-symbols-outlined mr-1 text-sm">campaign</span> Publicidad
+                    </a>
+                    <a href="#servicios"
+                        class="text-gray-700 hover:text-primary font-medium transition-colors flex items-center">
+                        <span class="material-symbols-outlined mr-1 text-sm">design_services</span> Servicios
+                    </a>
+                    <a href="#contacto"
+                        class="text-gray-700 hover:text-primary font-medium transition-colors flex items-center">
+                        <span class="material-symbols-outlined mr-1 text-sm">contact_support</span> Contacto
+                    </a>
+                    <a href="/grilla_canales"
+                        class="bg-accent text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center">
+                        <span class="material-symbols-outlined mr-1 text-sm">live_tv</span> Ver Canales
+                    </a>
+                </div>
+
+                <button class="md:hidden text-primary">
+                    <span class="material-symbols-outlined text-2xl">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-pattern pt-20 pb-16 md:pt-28 md:pb-24 relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 mb-12 md:mb-0 text-center md:text-left">
+                    <div class="inline-flex items-center bg-red-600 text-white px-4 py-1 rounded-full mb-6">
+                        <span class="live-badge w-2 h-2 bg-white rounded-full mr-2"></span>
+                        <span class="text-sm font-medium">EN VIVO</span>
+                    </div>
+                    <h1 class="font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6">
+                        La voz de <span class="text-accent">Chalatenango</span>
+                    </h1>
+                    <p class="text-xl text-gray-100 mb-8 max-w-lg mx-auto md:mx-0">
+                        Canal 29 Omnivision: produciendo contenido local de calidad para informar, entretener y conectar
+                        a nuestra comunidad.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="#contacto"
+                            class="bg-accent hover:bg-orange-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center group">
+                            <span class="mr-2">Contactar ahora</span>
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                        <a href="#programas"
+                            class="bg-white/20 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 flex items-center justify-center border border-white/30 group">
+                            <span class="material-symbols-outlined mr-2">play_circle</span>
+                            <span class="group-hover:opacity-80">Ver programación</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden p-2">
+                            <img src="https://images.unsplash.com/photo-1572943908191-9c68a62c32f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                                alt="Estudios Canal 29 Omnivision" class="rounded-xl w-full max-w-md">
+                        </div>
+                        <div
+                            class="absolute -top-4 -right-4 bg-accent text-white p-3 rounded-full shadow-xl floating-icon">
+                            <span class="material-symbols-outlined text-3xl">live_tv</span>
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 bg-primary text-white p-3 rounded-full shadow-xl floating-icon"
+                            style="animation-delay: 2s;">
+                            <span class="material-symbols-outlined text-3xl">mic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Programas -->
+    <section id="programas" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-primary mb-12 text-center">Nuestros Programas
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Programa 1 -->
+                <div class="program-card bg-white rounded-xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-primary to-secondary relative">
+                        <span
+                            class="absolute top-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-bold">EN
+                            VIVO</span>
+                        <div class="absolute bottom-4 left-4">
+                            <h3 class="font-bold text-2xl text-white">Telenoticias 29</h3>
+                            <p class="text-gray-200">Chalatenango</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">El noticiero líder de Chalatenango con las últimas noticias
+                            locales, nacionales e internacionales. Transmitido todos los días a las 6:00 PM.</p>
+                        <div class="flex items-center text-gray-500">
+                            <span class="material-symbols-outlined text-sm mr-1">schedule</span>
+                            <span class="text-sm">Lunes a Domingo - 6:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programa 2 -->
+                <div class="program-card bg-white rounded-xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-secondary to-accent relative">
+                        <div class="absolute bottom-4 left-4">
+                            <h3 class="font-bold text-2xl text-white">Omnivision Deportes</h3>
+                            <p class="text-gray-200">Cobertura Total</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Programa dedicado al deporte local y nacional. Resultados,
+                            entrevistas con atletas y cobertura especial de torneos y competencias.</p>
+                        <div class="flex items-center text-gray-500">
+                            <span class="material-symbols-outlined text-sm mr-1">schedule</span>
+                            <span class="text-sm">Martes y Jueves - 7:30 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programa 3 -->
+                <div class="program-card bg-white rounded-xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-accent to-primary relative">
+                        <div class="absolute bottom-4 left-4">
+                            <h3 class="font-bold text-2xl text-white">Omnivision Informa</h3>
+                            <p class="text-gray-200">Actualidad Local</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">El programa de análisis e información profunda sobre los temas más
+                            relevantes para la comunidad chalateca.</p>
+                        <div class="flex items-center text-gray-500">
+                            <span class="material-symbols-outlined text-sm mr-1">schedule</span>
+                            <span class="text-sm">Miércoles y Viernes - 8:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="#"
+                    class="bg-primary hover:bg-gray-900 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 inline-flex items-center">
+                    <span class="mr-2">Ver programación completa</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Publicidad -->
+    <section id="publicidad" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-primary mb-12 text-center">Servicios de
+                Publicidad</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="ad-service-card p-6 text-center">
+                    <div class="bg-secondary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-secondary text-3xl">tv</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-primary mb-3">Promoción en Televisión</h3>
+                    <p class="text-gray-600 mb-4">Llega a miles de hogares chalatecos con comerciales en nuestra
+                        programación de TV local.</p>
+                    <ul class="text-left text-gray-700 space-y-2">
+                        <li class="flex items-center">
+                            <span class="material-symbols-outlined text-accent text-sm mr-2">check_circle</span>
+                            <span>Spots publicitarios</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="material-symbols-outlined text-accent text-sm mr-2">check_circle</span>
+                            <span>Patrocinios de programas</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="material-symbols-outlined text-accent text-sm mr-2">check_circle</span>
+                            <span>Menciones especiales</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="ad-service-card p-6 text-center">
+                    <div class="bg-secondary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-secondary text-3xl">groups</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-primary mb-3">Campañas en Redes</h3>
+                    <p class="text-gray-600 mb-4">Amplifica tu mensaje con estrategias digitales dirigidas a tu público
+                        objetivo en redes sociales.</p>
+                    <ul class="text-left text-gray-700 space-y-2">
+                        <li class="flex items-center">
+                            <span class="material-symbols-outlined text-accent text-sm mr-2">check_circle</span>
+                            <span>Publicación en redes sociales</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="material-symbols-outlined text-accent text-sm mr-2">check_circle</span>
+                            <span>Anuncios segmentados</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="material-symbols-outlined text-accent text-sm mr-2">check_circle</span>
+                            <span>Contenido promocional</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="ad-service-card p-6 text-center">
+                    <div class="bg-secondary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-secondary text-3xl">event</span>
+                    </div>
+                    <h3 class="font-bold text-xl text-primary mb-3">Cobertura de Eventos</h3>
+                    <p class="text-gray-600 mb-4">Transmitimos y promocionamos tus eventos especiales con cobertura
+                        completa y profesional.</p>
+                    <ul class="text-left text-gray-700 space-y-2">
+                        <li class="flex items-center">
+                            <span class="material-symbols-outlined text-accent text-sm mr-2">check_circle</span>
+                            <span>Transmisión en vivo</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="material-symbols-outlined text-accent text-sm mr-2">check_circle</span>
+                            <span>Reportajes especiales</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="material-symbols-outlined text-accent text-sm mr-2">check_circle</span>
+                            <span>Promoción previa al evento</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="#contacto"
+                    class="bg-secondary hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 inline-flex items-center">
+                    <span class="mr-2">Solicitar paquete publicitario</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Servicios Omnivision -->
+    <section id="servicios" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-primary mb-12 text-center">También ofrecemos
+            </h2>
+            <p class="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-12">Como parte de Omnivision, brindamos
+                servicios integrales de telecomunicaciones para Chalatenango y sus alrededores.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gray-50 rounded-lg p-5 text-center">
+                    <div class="bg-primary/10 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-primary text-2xl">wifi</span>
+                    </div>
+                    <h3 class="font-bold text-lg text-primary mb-2">Internet Fibra Óptica</h3>
+                    <p class="text-gray-600 text-sm">Conexión de alta velocidad para hogares y empresas.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-5 text-center">
+                    <div class="bg-primary/10 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-primary text-2xl">live_tv</span>
+                    </div>
+                    <h3 class="font-bold text-lg text-primary mb-2">Televisión por Cable</h3>
+                    <p class="text-gray-600 text-sm">Más de 80 canales con la mejor programación.</p>
+                    <a href="/grilla_canales" class="text-accent text-sm font-medium mt-2 inline-block">Ver canales
+                        →</a>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-5 text-center">
+                    <div class="bg-primary/10 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-primary text-2xl">tv</span>
+                    </div>
+                    <h3 class="font-bold text-lg text-primary mb-2">IPTV</h3>
+                    <p class="text-gray-600 text-sm">Televisión por internet con contenido a la carta.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-5 text-center">
+                    <div class="bg-primary/10 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-primary text-2xl">security</span>
+                    </div>
+                    <h3 class="font-bold text-lg text-primary mb-2">Sistemas de Vigilancia</h3>
+                    <p class="text-gray-600 text-sm">Soluciones de seguridad para tu hogar o negocio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="py-20 bg-gray-100">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4">Contáctanos</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">¿Interesado en publicidad, producción de contenido o
+                    nuestros servicios de telecomunicaciones? Estamos aquí para ayudarte.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-10">
+                <!-- Formulario de contacto -->
+                <div class="contact-card p-8 flex-1">
+                    <h3 class="text-2xl font-semibold text-primary mb-6">Envía tu consulta</h3>
+
+                    <form action="https://formspree.io/f/xjvnqgpy" method="POST" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Nombre completo</label>
+                                <input type="text" name="name"
+                                    class="input-field w-full px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                    placeholder="Tu nombre" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Teléfono</label>
+                                <input type="tel" name="phone"
+                                    class="input-field w-full px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                    placeholder="Tu número de contacto" required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Correo electrónico</label>
+                            <input type="email" name="email"
+                                class="input-field w-full px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                placeholder="Tu correo electrónico" required>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Servicio de interés</label>
+                            <select name="service"
+                                class="input-field w-full px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                required>
+                                <option value="">Selecciona un servicio</option>
+                                <option value="publicidad-tv">Publicidad en TV</option>
+                                <option value="publicidad-redes">Publicidad en Redes Sociales</option>
+                                <option value="cobertura-eventos">Cobertura de Eventos</option>
+                                <option value="produccion-contenido">Producción de Contenido</option>
+                                <option value="internet">Internet Fibra Óptica</option>
+                                <option value="television">Televisión por Cable</option>
+                                <option value="otros">Otros servicios</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Mensaje</label>
+                            <textarea name="message"
+                                class="input-field w-full px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 h-32"
+                                placeholder="¿En qué podemos ayudarte?" required></textarea>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit" class="submit-btn w-full text-white font-medium py-4">
+                                Enviar consulta
+                                <span class="material-symbols-outlined align-middle ml-2">arrow_forward</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Información de contacto -->
+                <div class="contact-info-card flex-1">
+                    <h3 class="text-2xl font-semibold text-white mb-2">Información de contacto</h3>
+                    <p class="text-gray-200 mb-8">Estamos disponibles para responder tus preguntas sobre publicidad,
+                        producción o servicios.</p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="contact-icon">
+                                <span class="material-symbols-outlined text-white">location_on</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Dirección</h4>
+                                <p class="text-gray-200">Chalatenango, El Salvador</p>
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="flex items-start">
+                            <div class="contact-icon">
+                                <span class="material-symbols-outlined text-white">mail</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Correo electrónico</h4>
+                                <p class="text-gray-200">canal29omnivision@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="flex items-start">
+                            <div class="contact-icon">
+                                <span class="material-symbols-outlined text-white">schedule</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Horario de atención</h4>
+                                <p class="text-gray-200">Lunes a Viernes: 8:00 AM - 5:00 PM</p>
+                                <p class="text-gray-200">Sábados: 8:00 AM - 12:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/20">
+                        <h4 class="font-semibold text-white mb-4">Contáctanos por WhatsApp</h4>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://wa.me/50379273128" target="_blank"
+                                class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center transition-colors">
+                                <span class="material-symbols-outlined mr-2">chat</span> 7927-3128
+                            </a>
+                            <a href="https://wa.me/50378709591" target="_blank"
+                                class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center transition-colors">
+                                <span class="material-symbols-outlined mr-2">chat</span> 7870-9591
+                            </a>
+                            <a href="https://wa.me/50377338982" target="_blank"
+                                class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center transition-colors">
+                                <span class="material-symbols-outlined mr-2">chat</span> 7733-8982
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="#" class="flex items-center text-2xl font-bold mb-4">
+                        <img src="img/logo_canal_29_omnivision.webp" alt="Canal 29 Omnivision" class="h-8 mr-2">
+                        <span>Canal 29 Omnivision</span>
+                    </a>
+                    <p class="text-gray-400 mb-4">La voz de Chalatenango. Produciendo contenido local de calidad para
+                        informar, entretener y conectar a nuestra comunidad.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-white">Programación</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#programas" class="text-gray-400 hover:text-white transition-colors">Telenoticias
+                                29 Chalatenango</a></li>
+                        <li><a href="#programas" class="text-gray-400 hover:text-white transition-colors">Omnivision
+                                Deportes</a></li>
+                        <li><a href="#programas" class="text-gray-400 hover:text-white transition-colors">Omnivision
+                                Informa</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Programación
+                                completa</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-white">Publicidad</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#publicidad" class="text-gray-400 hover:text-white transition-colors">Promoción en
+                                TV</a></li>
+                        <li><a href="#publicidad" class="text-gray-400 hover:text-white transition-colors">Campañas en
+                                Redes</a></li>
+                        <li><a href="#publicidad" class="text-gray-400 hover:text-white transition-colors">Cobertura de
+                                Eventos</a></li>
+                        <li><a href="#contacto" class="text-gray-400 hover:text-white transition-colors">Solicitar
+                                paquete</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-white">Contacto</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <span class="material-symbols-outlined mr-2 text-gray-400">mail</span>
+                            <span class="text-gray-400">canal29omnivision@gmail.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="material-symbols-outlined mr-2 text-gray-400 mt-1">location_on</span>
+                            <span class="text-gray-400">Chalatenango, El Salvador</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="material-symbols-outlined mr-2 text-gray-400">call</span>
+                            <span class="text-gray-400">7927-3128</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-6 text-center">
+                <p class="text-sm text-gray-400">© 2023 Canal 29 Omnivision - Todos los derechos reservados. Una
+                    división de Omnivision.</p>
+            </div>
+        </div>
+    </footer>
 </body>
+
 </html>
